@@ -69,6 +69,14 @@ gradlePlugin {
   }
 }
 
+dokka {
+  moduleName.set("pambrose-gradle-plugins")
+  pluginsConfiguration.html {
+    homepageLink.set("https://github.com/pambrose/pambrose-gradle-plugins")
+    footerMessage.set("pambrose-gradle-plugins")
+  }
+}
+
 mavenPublishing {
   configure(
     com.vanniktech.maven.publish.GradlePlugin(

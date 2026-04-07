@@ -20,11 +20,14 @@ tree:
 depends:
 	./gradlew dependencies
 
-versioncheck:
-	./gradlew dependencyUpdates --no-configuration-cache
-
 refresh:
 	./gradlew --refresh-dependencies
+
+kdocs:
+	./gradlew dokkaGeneratePublicationHtml
+
+versioncheck:
+	./gradlew dependencyUpdates --no-configuration-cache
 
 publish-local:
 	./gradlew publishToMavenLocal

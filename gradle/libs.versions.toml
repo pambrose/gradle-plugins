@@ -2,7 +2,7 @@
 kotlin = "2.3.10"
 ben-manes-versions = "0.53.0"
 kotlinter = "5.4.2"
-kotest = "6.1.10"
+kotest = "6.1.11"
 dokka = "2.2.0"
 maven-publish = "0.36.0"
 
