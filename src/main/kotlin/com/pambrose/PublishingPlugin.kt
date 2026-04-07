@@ -9,6 +9,15 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.get
 
+/**
+ * Gradle plugin that configures Maven publishing with a sources JAR.
+ *
+ * Applies the `maven-publish` and `java` plugins, enables the sources JAR
+ * artifact, and creates a `maven` publication from the project's `java` component.
+ *
+ * The resulting publication can be installed locally via `publishToMavenLocal`
+ * or pushed to a remote repository configured in the consuming project.
+ */
 class PublishingPlugin : Plugin<Project> {
   override fun apply(project: Project) {
     with(project) {

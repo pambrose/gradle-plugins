@@ -7,11 +7,36 @@ import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.create
 import org.gradle.kotlin.dsl.withType
 
+/**
+ * Configuration extension for [EnvVarPlugin].
+ *
+ * @property filename Path to the environment file, relative to the project directory.
+ *   Defaults to `.env`.
+ * @property vars The parsed environment variables. Populated after project evaluation
+ *   and available for other plugins or tasks to read.
+ */
 open class EnvVarExtension {
-  var filename: String = "secrets/secrets.env"
+  var filename: String = ".env"
   val vars: MutableMap<String, String> = mutableMapOf()
 }
 
+/**
+ * Gradle plugin that loads environment variables from a file and injects them
+ * into [JavaExec] and [Test] tasks.
+ *
+ * The file is parsed after project evaluation. Lines starting with `#` and blank
+ * lines are ignored. Each remaining line is split on the first `=` character into
+ * a key-value pair.
+ *
+ * Register an `envvar` extension block to customise the source file path:
+ * ```kotlin
+ * envvar {
+ *   filename = "config/my.env"
+ * }
+ * ```
+ *
+ * @see EnvVarExtension
+ */
 class EnvVarPlugin : Plugin<Project> {
   override fun apply(project: Project) {
     val extension = project.extensions.create<EnvVarExtension>("envvar")

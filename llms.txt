@@ -16,7 +16,7 @@ Group/artifact: `com.pambrose.gradle-plugins:1.0.12`
 - `com.pambrose.testing`: Configures JUnit Platform with verbose test logging (passed/skipped/failed events, full exception format).
 - `com.pambrose.publishing`: Applies `maven-publish` and `java`, generates a sources JAR, creates a `maven` publication.
 - `com.pambrose.stable-versions`: Applies ben-manes `versions` plugin, rejects RC/beta/alpha/milestone versions from dependency updates.
-- `com.pambrose.envvar`: Loads environment variables from `secrets/secrets.env` (configurable) into `JavaExec` and `Test` tasks. Parsed values accessible via `envvar.vars`.
+- `com.pambrose.envvar`: Loads environment variables from `.env` (configurable) into `JavaExec` and `Test` tasks. Parsed values accessible via `envvar.vars`.
 - `com.pambrose.kotlinter`: Applies the kotlinter plugin with `checkstyle` and `plain` reporters.
 
 ## Usage
