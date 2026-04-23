@@ -4,6 +4,13 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.14] - 2026-04-22
+
+### Added
+- `TestingPlugin` adds `io.kotest:kotest-runner-junit5` to `testImplementation` by default when the `org.jetbrains.kotlin.jvm` plugin is applied. Configurable via `pambroseTesting.addKotest` and `pambroseTesting.kotestVersion`.
+- `TestingPlugin` adds `org.jetbrains.kotlin:kotlin-test` (unversioned, resolves to the Kotlin plugin's version) to `testImplementation` by default when the `org.jetbrains.kotlin.jvm` plugin is applied. Configurable via `pambroseTesting.addKotlinTest`.
+- Kotest version exposed on the generated `BuildConfig` object as `DEFAULT_KOTEST_VERSION` so `dependencyUpdates` can track it.
+
 ## [1.0.13] - 2026-04-22
 
 ### Added
@@ -131,6 +138,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
+[1.0.14]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.13...1.0.14
 [1.0.13]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.12...1.0.13
 [1.0.12]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.11...1.0.12
 [1.0.11]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.10...1.0.11

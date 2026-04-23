@@ -17,12 +17,21 @@ format, standard streams suppressed).
 
 When the consuming project applies the `java` plugin, a `ch.qos.logback:logback-classic` dependency is added to
 `testRuntimeOnly` by default so libraries using SLF4J (directly or via `kotlin-logging`) get a logging backend
-during tests. Configure via the `pambroseTesting` extension:
+during tests.
+
+When the consuming project applies the `org.jetbrains.kotlin.jvm` plugin, `io.kotest:kotest-runner-junit5` and
+`org.jetbrains.kotlin:kotlin-test` are added to `testImplementation` by default. `kotlin-test` is declared without
+a version so it resolves to the Kotlin plugin's version.
+
+Configure via the `pambroseTesting` extension:
 
 ```kotlin
 pambroseTesting {
   addLogbackClassic = false         // opt out entirely
   logbackVersion = "1.5.32"         // override the default version
+  addKotest = false                 // opt out of kotest-runner-junit5
+  kotestVersion = "6.1.10"          // override the default Kotest version
+  addKotlinTest = false             // opt out of kotlin-test
 }
 ```
 
