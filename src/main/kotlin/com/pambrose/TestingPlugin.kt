@@ -43,7 +43,7 @@ class TestingPlugin : Plugin<Project> {
     with(project) {
       val ext = extensions.create<TestingExtension>("pambroseTesting").apply {
         addLogbackClassic.convention(true)
-        logbackVersion.convention(DEFAULT_LOGBACK_VERSION)
+        logbackVersion.convention(BuildConfig.DEFAULT_LOGBACK_VERSION)
       }
 
       tasks.withType<Test> {
@@ -66,9 +66,5 @@ class TestingPlugin : Plugin<Project> {
         }
       }
     }
-  }
-
-  private companion object {
-    const val DEFAULT_LOGBACK_VERSION = "1.5.18"
   }
 }

@@ -33,6 +33,31 @@ kotlin {
   jvmToolchain(17)
 }
 
+val generatedSrcDir = layout.buildDirectory.dir("generated/sources/buildconfig/kotlin/main")
+
+val generateBuildConfig by tasks.registering {
+  val logbackVersion = libs.versions.logback.get()
+  val outputDir = generatedSrcDir
+  inputs.property("logbackVersion", logbackVersion)
+  outputs.dir(outputDir)
+  doLast {
+    val dir = outputDir.get().asFile.resolve("com/pambrose").apply { mkdirs() }
+    dir.resolve("BuildConfig.kt").writeText(
+      """
+      package com.pambrose
+
+      internal object BuildConfig {
+        const val DEFAULT_LOGBACK_VERSION = "$logbackVersion"
+      }
+      """.trimIndent() + "\n",
+    )
+  }
+}
+
+sourceSets.main {
+  kotlin.srcDir(generateBuildConfig)
+}
+
 tasks.test {
   useJUnitPlatform()
   testLogging {
