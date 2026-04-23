@@ -12,7 +12,7 @@ plugins {
   alias(libs.plugins.maven.publish)
 }
 
-version = findProperty("overrideVersion")?.toString() ?: "1.0.13"
+version = findProperty("overrideVersion")?.toString() ?: "1.0.14"
 group = "com.pambrose"
 
 repositories {
@@ -37,8 +37,10 @@ val generatedSrcDir = layout.buildDirectory.dir("generated/sources/buildconfig/k
 
 val generateBuildConfig by tasks.registering {
   val logbackVersion = libs.versions.logback.get()
+  val kotestVersion = libs.versions.kotest.get()
   val outputDir = generatedSrcDir
   inputs.property("logbackVersion", logbackVersion)
+  inputs.property("kotestVersion", kotestVersion)
   outputs.dir(outputDir)
   doLast {
     val dir = outputDir.get().asFile.resolve("com/pambrose").apply { mkdirs() }
@@ -48,6 +50,7 @@ val generateBuildConfig by tasks.registering {
 
       internal object BuildConfig {
         const val DEFAULT_LOGBACK_VERSION = "$logbackVersion"
+        const val DEFAULT_KOTEST_VERSION = "$kotestVersion"
       }
       """.trimIndent() + "\n",
     )
