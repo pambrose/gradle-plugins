@@ -17,12 +17,21 @@ format, standard streams suppressed).
 
 When the consuming project applies the `java` plugin, a `ch.qos.logback:logback-classic` dependency is added to
 `testRuntimeOnly` by default so libraries using SLF4J (directly or via `kotlin-logging`) get a logging backend
-during tests. Configure via the `pambroseTesting` extension:
+during tests.
+
+When the consuming project applies the `org.jetbrains.kotlin.jvm` plugin, `io.kotest:kotest-runner-junit5` and
+`org.jetbrains.kotlin:kotlin-test` are added to `testImplementation` by default. `kotlin-test` is declared without
+a version so it resolves to the Kotlin plugin's version.
+
+Configure via the `pambroseTesting` extension:
 
 ```kotlin
 pambroseTesting {
   addLogbackClassic = false         // opt out entirely
   logbackVersion = "1.5.32"         // override the default version
+  addKotest = false                 // opt out of kotest-runner-junit5
+  kotestVersion = "6.1.10"          // override the default Kotest version
+  addKotlinTest = false             // opt out of kotlin-test
 }
 ```
 
@@ -79,11 +88,11 @@ In your **build.gradle.kts**, apply the desired plugins:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.13"
-  id("com.pambrose.stable-versions") version "1.0.13"
-  id("com.pambrose.kotlinter") version "1.0.13"
-  id("com.pambrose.publishing") version "1.0.13"
-  id("com.pambrose.testing") version "1.0.13"
+  id("com.pambrose.envvar") version "1.0.14"
+  id("com.pambrose.stable-versions") version "1.0.14"
+  id("com.pambrose.kotlinter") version "1.0.14"
+  id("com.pambrose.publishing") version "1.0.14"
+  id("com.pambrose.testing") version "1.0.14"
 }
 ```
 
@@ -112,11 +121,11 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.13"
-  id("com.pambrose.stable-versions") version "1.0.13"
-  id("com.pambrose.kotlinter") version "1.0.13"
-  id("com.pambrose.publishing") version "1.0.13"
-  id("com.pambrose.testing") version "1.0.13"
+  id("com.pambrose.envvar") version "1.0.14"
+  id("com.pambrose.stable-versions") version "1.0.14"
+  id("com.pambrose.kotlinter") version "1.0.14"
+  id("com.pambrose.publishing") version "1.0.14"
+  id("com.pambrose.testing") version "1.0.14"
 }
 ```
 
@@ -129,7 +138,7 @@ In your **gradle/libs.versions.toml**, define the version and plugin aliases:
 
 ```toml
 [versions]
-pambrose-plugins = "1.0.13"
+pambrose-plugins = "1.0.14"
 
 [plugins]
 pambrose-envvar = { id = "com.pambrose.envvar", version.ref = "pambrose-plugins" }
@@ -165,11 +174,11 @@ Use `apply false` to resolve the plugin version without applying the plugin to t
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.13" apply false
-  id("com.pambrose.stable-versions") version "1.0.13" apply false
-  id("com.pambrose.kotlinter") version "1.0.13" apply false
-  id("com.pambrose.publishing") version "1.0.13" apply false
-  id("com.pambrose.testing") version "1.0.13" apply false
+  id("com.pambrose.envvar") version "1.0.14" apply false
+  id("com.pambrose.stable-versions") version "1.0.14" apply false
+  id("com.pambrose.kotlinter") version "1.0.14" apply false
+  id("com.pambrose.publishing") version "1.0.14" apply false
+  id("com.pambrose.testing") version "1.0.14" apply false
 }
 ```
 

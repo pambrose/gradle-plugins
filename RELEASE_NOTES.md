@@ -5,6 +5,39 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.0.14 — 2026-04-22
+
+More batteries-included defaults for Kotlin projects using `TestingPlugin`.
+
+**Highlights**
+
+- When the `org.jetbrains.kotlin.jvm` plugin is applied, `TestingPlugin` now
+  adds `io.kotest:kotest-runner-junit5` and `org.jetbrains.kotlin:kotlin-test`
+  to `testImplementation` automatically. Consumers get a working Kotest +
+  kotlin-test setup without having to wire either dependency themselves.
+- `kotlin-test` is declared without a version so it resolves to the version
+  supplied by the Kotlin plugin already applied to the project.
+- The Kotest version is sourced from `gradle/libs.versions.toml` via the
+  generated `com.pambrose.BuildConfig` object (new `DEFAULT_KOTEST_VERSION`
+  constant), so `dependencyUpdates` continues to track it.
+- Both defaults are opt-out via the `pambroseTesting` extension:
+  `addKotest`, `kotestVersion`, and `addKotlinTest`.
+
+**Upgrade notes**
+
+- If your Kotlin project already declares `kotest-runner-junit5` or
+  `kotlin-test` explicitly, either remove those declarations or disable
+  the defaults:
+
+  ```kotlin
+  pambroseTesting {
+    addKotest.set(false)
+    addKotlinTest.set(false)
+  }
+  ```
+
+---
+
 ## v1.0.13 — 2026-04-22
 
 Convenience and tooling improvements for test setup and documentation.

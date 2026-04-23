@@ -19,7 +19,7 @@ Gradle projects to share common build configuration. Distributed via Maven Centr
 - Gradle 9.2.0 with Kotlin DSL
 - Kotlin Gradle Plugin 2.3.10
 - Ben-Manes Versions Plugin 0.54.0
-- Group/artifact: `com.pambrose.gradle:gradle-plugins:1.0.13`
+- Group/artifact: `com.pambrose.gradle:gradle-plugins:1.0.14`
 
 ## Architecture
 
@@ -32,7 +32,7 @@ the arguments.
 
 | Plugin ID                      | Class                  | Purpose                                                                    |
 |--------------------------------|------------------------|----------------------------------------------------------------------------|
-| `com.pambrose.testing`         | `TestingPlugin`        | Configures JUnit Platform with verbose test logging; adds logback-classic to `testRuntimeOnly` by default |
+| `com.pambrose.testing`         | `TestingPlugin`        | Configures JUnit Platform with verbose test logging; adds logback-classic to `testRuntimeOnly`, and kotest-runner-junit5 + kotlin-test to `testImplementation` (Kotlin JVM projects) by default |
 | `com.pambrose.publishing`      | `PublishingPlugin`     | Sets up `maven-publish` with sources JAR and a Maven publication           |
 | `com.pambrose.stable-versions` | `StableVersionsPlugin` | Filters RC/beta/alpha/milestone versions from `dependencyUpdates` results  |
 | `com.pambrose.envvar`          | `EnvVarPlugin`         | Loads env vars from `.env` into `JavaExec` and `Test` tasks |
@@ -45,7 +45,7 @@ the arguments.
 
 ### Versions Referenced From Plugin Code
 
-Runtime-injected dependency versions (e.g. logback-classic in `TestingPlugin`) are declared in
+Runtime-injected dependency versions (e.g. logback-classic and kotest in `TestingPlugin`) are declared in
 `gradle/libs.versions.toml` so `dependencyUpdates` can track them. The `generateBuildConfig` task
 writes an internal `com.pambrose.BuildConfig` object into `build/generated/sources/buildconfig/`
 that exposes these as Kotlin constants. To add another such version:

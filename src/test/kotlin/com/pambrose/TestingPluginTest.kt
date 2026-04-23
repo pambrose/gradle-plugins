@@ -116,5 +116,78 @@ class TestingPluginTest : StringSpec(
 
       result.output shouldNotContain "logback-classic"
     }
+
+    "plugin adds kotest and kotlin-test to testImplementation by default" {
+      val projectDir = createTempDirectory("test").toFile()
+      projectDir.resolve("settings.gradle.kts").writeText("""rootProject.name = "test-project"""")
+      projectDir.resolve("build.gradle.kts").writeText(
+        """
+      plugins {
+        kotlin("jvm") version "2.3.10"
+        id("com.pambrose.testing")
+      }
+
+      repositories {
+        mavenCentral()
+      }
+
+      tasks.register("showTestImpl") {
+        doLast {
+          configurations["testImplementation"].dependencies.forEach { d ->
+            println("DEP=${'$'}{d.group}:${'$'}{d.name}:${'$'}{d.version}")
+          }
+        }
+      }
+      """.trimIndent(),
+      )
+
+      val result = GradleRunner.create()
+        .withProjectDir(projectDir)
+        .withPluginClasspath()
+        .withArguments("showTestImpl")
+        .build()
+
+      result.output shouldContain "DEP=io.kotest:kotest-runner-junit5:"
+      result.output shouldContain "DEP=org.jetbrains.kotlin:kotlin-test:"
+    }
+
+    "plugin honors addKotest = false and addKotlinTest = false" {
+      val projectDir = createTempDirectory("test").toFile()
+      projectDir.resolve("settings.gradle.kts").writeText("""rootProject.name = "test-project"""")
+      projectDir.resolve("build.gradle.kts").writeText(
+        """
+      plugins {
+        kotlin("jvm") version "2.3.10"
+        id("com.pambrose.testing")
+      }
+
+      repositories {
+        mavenCentral()
+      }
+
+      pambroseTesting {
+        addKotest.set(false)
+        addKotlinTest.set(false)
+      }
+
+      tasks.register("showTestImpl") {
+        doLast {
+          configurations["testImplementation"].dependencies.forEach { d ->
+            println("DEP=${'$'}{d.group}:${'$'}{d.name}:${'$'}{d.version}")
+          }
+        }
+      }
+      """.trimIndent(),
+      )
+
+      val result = GradleRunner.create()
+        .withProjectDir(projectDir)
+        .withPluginClasspath()
+        .withArguments("showTestImpl")
+        .build()
+
+      result.output shouldNotContain "kotest-runner-junit5"
+      result.output shouldNotContain "kotlin-test"
+    }
   },
 )
