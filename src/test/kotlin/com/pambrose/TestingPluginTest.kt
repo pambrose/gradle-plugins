@@ -2,6 +2,7 @@ package com.pambrose
 
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.string.shouldContain
+import io.kotest.matchers.string.shouldNotContain
 import kotlin.io.path.createTempDirectory
 import org.gradle.testkit.runner.GradleRunner
 
@@ -44,6 +45,76 @@ class TestingPluginTest : StringSpec(
       result.output shouldContain "JUNIT_PLATFORM=true"
       result.output shouldContain "SHOW_STANDARD_STREAMS=false"
       result.output shouldContain "EXCEPTION_FORMAT=FULL"
+    }
+
+    "plugin adds logback-classic to testRuntimeOnly by default" {
+      val projectDir = createTempDirectory("test").toFile()
+      projectDir.resolve("settings.gradle.kts").writeText("""rootProject.name = "test-project"""")
+      projectDir.resolve("build.gradle.kts").writeText(
+        """
+      plugins {
+        java
+        id("com.pambrose.testing")
+      }
+
+      repositories {
+        mavenCentral()
+      }
+
+      tasks.register("showTestDeps") {
+        doLast {
+          configurations["testRuntimeOnly"].dependencies.forEach { d ->
+            println("DEP=${'$'}{d.group}:${'$'}{d.name}:${'$'}{d.version}")
+          }
+        }
+      }
+      """.trimIndent(),
+      )
+
+      val result = GradleRunner.create()
+        .withProjectDir(projectDir)
+        .withPluginClasspath()
+        .withArguments("showTestDeps")
+        .build()
+
+      result.output shouldContain "DEP=ch.qos.logback:logback-classic:"
+    }
+
+    "plugin honors addLogbackClassic = false" {
+      val projectDir = createTempDirectory("test").toFile()
+      projectDir.resolve("settings.gradle.kts").writeText("""rootProject.name = "test-project"""")
+      projectDir.resolve("build.gradle.kts").writeText(
+        """
+      plugins {
+        java
+        id("com.pambrose.testing")
+      }
+
+      repositories {
+        mavenCentral()
+      }
+
+      pambroseTesting {
+        addLogbackClassic.set(false)
+      }
+
+      tasks.register("showTestDeps") {
+        doLast {
+          configurations["testRuntimeOnly"].dependencies.forEach { d ->
+            println("DEP=${'$'}{d.group}:${'$'}{d.name}:${'$'}{d.version}")
+          }
+        }
+      }
+      """.trimIndent(),
+      )
+
+      val result = GradleRunner.create()
+        .withProjectDir(projectDir)
+        .withPluginClasspath()
+        .withArguments("showTestDeps")
+        .build()
+
+      result.output shouldNotContain "logback-classic"
     }
   },
 )

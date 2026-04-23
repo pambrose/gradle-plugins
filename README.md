@@ -68,11 +68,11 @@ In your **build.gradle.kts**, apply the desired plugins:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.12"
-  id("com.pambrose.stable-versions") version "1.0.12"
-  id("com.pambrose.kotlinter") version "1.0.12"
-  id("com.pambrose.publishing") version "1.0.12"
-  id("com.pambrose.testing") version "1.0.12"
+  id("com.pambrose.envvar") version "1.0.13"
+  id("com.pambrose.stable-versions") version "1.0.13"
+  id("com.pambrose.kotlinter") version "1.0.13"
+  id("com.pambrose.publishing") version "1.0.13"
+  id("com.pambrose.testing") version "1.0.13"
 }
 ```
 
@@ -101,11 +101,11 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.12"
-  id("com.pambrose.stable-versions") version "1.0.12"
-  id("com.pambrose.kotlinter") version "1.0.12"
-  id("com.pambrose.publishing") version "1.0.12"
-  id("com.pambrose.testing") version "1.0.12"
+  id("com.pambrose.envvar") version "1.0.13"
+  id("com.pambrose.stable-versions") version "1.0.13"
+  id("com.pambrose.kotlinter") version "1.0.13"
+  id("com.pambrose.publishing") version "1.0.13"
+  id("com.pambrose.testing") version "1.0.13"
 }
 ```
 
@@ -118,7 +118,7 @@ In your **gradle/libs.versions.toml**, define the version and plugin aliases:
 
 ```toml
 [versions]
-pambrose-plugins = "1.0.12"
+pambrose-plugins = "1.0.13"
 
 [plugins]
 pambrose-envvar = { id = "com.pambrose.envvar", version.ref = "pambrose-plugins" }
@@ -154,11 +154,11 @@ Use `apply false` to resolve the plugin version without applying the plugin to t
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.12" apply false
-  id("com.pambrose.stable-versions") version "1.0.12" apply false
-  id("com.pambrose.kotlinter") version "1.0.12" apply false
-  id("com.pambrose.publishing") version "1.0.12" apply false
-  id("com.pambrose.testing") version "1.0.12" apply false
+  id("com.pambrose.envvar") version "1.0.13" apply false
+  id("com.pambrose.stable-versions") version "1.0.13" apply false
+  id("com.pambrose.kotlinter") version "1.0.13" apply false
+  id("com.pambrose.publishing") version "1.0.13" apply false
+  id("com.pambrose.testing") version "1.0.13" apply false
 }
 ```
 

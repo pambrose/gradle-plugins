@@ -12,7 +12,7 @@ plugins {
   alias(libs.plugins.maven.publish)
 }
 
-version = findProperty("overrideVersion")?.toString() ?: "1.0.12"
+version = findProperty("overrideVersion")?.toString() ?: "1.0.13"
 group = "com.pambrose"
 
 repositories {
