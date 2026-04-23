@@ -12,8 +12,19 @@ Shared Gradle convention plugins for Kotlin JVM projects.
 
 ### `com.pambrose.testing`
 
-Configures all test tasks to use JUnit Platform with verbose logging (passed/skipped/failed events and standard
-streams).
+Configures all test tasks to use JUnit Platform with verbose logging (passed/skipped/failed events, full exception
+format, standard streams suppressed).
+
+When the consuming project applies the `java` plugin, a `ch.qos.logback:logback-classic` dependency is added to
+`testRuntimeOnly` by default so libraries using SLF4J (directly or via `kotlin-logging`) get a logging backend
+during tests. Configure via the `pambroseTesting` extension:
+
+```kotlin
+pambroseTesting {
+  addLogbackClassic = false         // opt out entirely
+  logbackVersion = "1.5.32"         // override the default version
+}
+```
 
 ### `com.pambrose.publishing`
 
