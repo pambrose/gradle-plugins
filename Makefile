@@ -1,7 +1,7 @@
 .PHONY: default stop clean build tests tree depends refresh kdocs versioncheck \
         publish-local publish-local-snapshot publish-snapshot publish-maven-central upgrade-wrapper
 
-VERSION=$(shell grep -E '^version' build.gradle.kts | head -1 | grep -oE '"[^"]+"$$' | tr -d '"')
+VERSION=$(shell grep '^version=' gradle.properties | cut -d= -f2)
 GRADLE_VERSION=$(shell grep '^gradle =' gradle/libs.versions.toml | sed 's/.*"\(.*\)"/\1/')
 
 default: versioncheck

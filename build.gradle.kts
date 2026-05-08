@@ -12,12 +12,11 @@ plugins {
   alias(libs.plugins.maven.publish)
 }
 
-val groupId = "com.pambrose"
+val groupId = group.toString()
 val artifactId = "pambrose-gradle-plugins"
 val githubUrl = "https://github.com/pambrose/$artifactId"
 
-version = findProperty("overrideVersion")?.toString() ?: "1.0.14"
-group = groupId
+findProperty("overrideVersion")?.toString()?.let { version = it }
 
 repositories {
   mavenCentral()
