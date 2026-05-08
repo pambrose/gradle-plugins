@@ -12,8 +12,11 @@ plugins {
   alias(libs.plugins.maven.publish)
 }
 
-version = findProperty("overrideVersion")?.toString() ?: "1.0.14"
-group = "com.pambrose"
+val groupId = group.toString()
+val artifactId = "pambrose-gradle-plugins"
+val githubUrl = "https://github.com/pambrose/$artifactId"
+
+findProperty("overrideVersion")?.toString()?.let { version = it }
 
 repositories {
   mavenCentral()
@@ -30,7 +33,7 @@ dependencies {
 }
 
 kotlin {
-  jvmToolchain(17)
+  jvmToolchain(libs.versions.jvm.get().toInt())
 }
 
 val generatedSrcDir = layout.buildDirectory.dir("generated/sources/buildconfig/kotlin/main")
@@ -39,14 +42,15 @@ val generateBuildConfig by tasks.registering {
   val logbackVersion = libs.versions.logback.get()
   val kotestVersion = libs.versions.kotest.get()
   val outputDir = generatedSrcDir
+  val pkg = groupId
   inputs.property("logbackVersion", logbackVersion)
   inputs.property("kotestVersion", kotestVersion)
   outputs.dir(outputDir)
   doLast {
-    val dir = outputDir.get().asFile.resolve("com/pambrose").apply { mkdirs() }
+    val dir = outputDir.get().asFile.resolve(pkg.replace('.', '/')).apply { mkdirs() }
     dir.resolve("BuildConfig.kt").writeText(
       """
-      package com.pambrose
+      package $pkg
 
       internal object BuildConfig {
         const val DEFAULT_LOGBACK_VERSION = "$logbackVersion"
@@ -80,10 +84,9 @@ fun NamedDomainObjectContainer<PluginDeclaration>.plugin(
   name: String,
   id: String,
 ) {
-  val packageName = "com.pambrose"
   create(name) {
-    this.id = "$packageName.$id"
-    this.implementationClass = "$packageName.$name"
+    this.id = "$groupId.$id"
+    this.implementationClass = "$groupId.$name"
   }
 }
 
@@ -98,10 +101,10 @@ gradlePlugin {
 }
 
 dokka {
-  moduleName.set("pambrose-gradle-plugins")
+  moduleName.set(artifactId)
   pluginsConfiguration.html {
-    homepageLink.set("https://github.com/pambrose/pambrose-gradle-plugins")
-    footerMessage.set("pambrose-gradle-plugins")
+    homepageLink.set(githubUrl)
+    footerMessage.set(artifactId)
   }
 }
 
@@ -112,12 +115,12 @@ mavenPublishing {
       sourcesJar = true,
     ),
   )
-  coordinates("com.pambrose", "pambrose-gradle-plugins", version.toString())
+  coordinates(groupId, artifactId, version.toString())
 
   pom {
-    name.set("pambrose-gradle-plugins")
+    name.set(artifactId)
     description.set("Helpful Gradle plugins for Java and Kotlin projects")
-    url.set("https://github.com/pambrose/pambrose-gradle-plugins")
+    url.set(githubUrl)
     licenses {
       license {
         name.set("Apache License 2.0")
@@ -132,9 +135,9 @@ mavenPublishing {
       }
     }
     scm {
-      connection.set("scm:git:git://github.com/pambrose/pambrose-gradle-plugins.git")
-      developerConnection.set("scm:git:ssh://github.com/pambrose/pambrose-gradle-plugins.git")
-      url.set("https://github.com/pambrose/pambrose-gradle-plugins")
+      connection.set("scm:git:git://github.com/pambrose/$artifactId.git")
+      developerConnection.set("scm:git:ssh://github.com/pambrose/$artifactId.git")
+      url.set(githubUrl)
     }
   }
 
