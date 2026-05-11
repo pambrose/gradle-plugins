@@ -68,7 +68,7 @@ sourceSets.main {
 tasks.test {
   useJUnitPlatform()
   testLogging {
-    events = setOf(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
+    events = setOf(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED, TestLogEvent.STANDARD_ERROR)
     exceptionFormat = TestExceptionFormat.FULL
     showStandardStreams = false
   }
