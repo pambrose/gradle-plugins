@@ -4,6 +4,22 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.15] - 2026-06-05
+
+### Added
+- `TestingPlugin` now includes `TestLogEvent.STANDARD_ERROR` in its default test logging events (#19), so test stderr is surfaced in the build log even with `showStandardStreams = false`.
+- The root project's own test logging mirrors the same `STANDARD_ERROR` event.
+
+### Changed
+- Upgraded Kotlin to 2.4.0 and the Gradle wrapper to 9.5.1.
+- Bumped Kotest to 6.1.11 and Kotlinter to 5.5.0.
+- Centralized versions in `gradle/libs.versions.toml` and consolidated build / Makefile configuration (#18).
+- Renamed the `gradle` entry in `libs.versions.toml` to `gradle-wrapper` to make its purpose explicit; the Makefile's `GRADLE_VERSION` extraction was updated accordingly.
+
+### Fixed
+- Makefile `.PHONY` now declares the helper targets (`_check-gpg-env`, `_require-version`, `_require-gradle-version`) and drops the stale `depends` entry.
+- Publish targets now depend on `_require-version` so a missing `version=` in `gradle.properties` fails fast instead of silently publishing a bogus artifact.
+
 ## [1.0.14] - 2026-04-22
 
 ### Added
@@ -138,6 +154,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
+[1.0.15]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.14...1.0.15
 [1.0.14]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.13...1.0.14
 [1.0.13]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.12...1.0.13
 [1.0.12]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.11...1.0.12

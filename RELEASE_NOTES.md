@@ -5,6 +5,36 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.0.15 — 2026-06-05
+
+Toolchain refresh, build-config consolidation, and louder test failures.
+
+**Highlights**
+
+- `TestingPlugin` now includes `TestLogEvent.STANDARD_ERROR` in its default
+  test logging events (#19). With `showStandardStreams = false` Gradle keeps
+  per-test capture quiet, but stderr written during a failing test is now
+  routed into the build log so failures are easier to diagnose. The root
+  build's own test logging mirrors the same event.
+- Kotlin bumped to 2.4.0 and the Gradle wrapper to 9.5.1. Kotest bumped to
+  6.1.11 and Kotlinter to 5.5.0.
+- Versions consolidated into `gradle/libs.versions.toml` and the build /
+  Makefile configuration cleaned up (#18).
+- The `gradle` key in `libs.versions.toml` was renamed to `gradle-wrapper`
+  so its purpose (driving `make upgrade-wrapper`) is obvious; the Makefile
+  was updated to read the new key.
+
+**Makefile cleanup**
+
+- `.PHONY` now declares the helper targets (`_check-gpg-env`,
+  `_require-version`, `_require-gradle-version`) and drops the stale
+  `depends` entry.
+- All publish targets now depend on `_require-version`, so a missing
+  `version=` in `gradle.properties` fails fast instead of silently
+  publishing a bogus `…-SNAPSHOT` artifact.
+
+---
+
 ## v1.0.14 — 2026-04-22
 
 More batteries-included defaults for Kotlin projects using `TestingPlugin`.

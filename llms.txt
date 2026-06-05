@@ -9,11 +9,11 @@ A multi-plugin Gradle convention plugin project built with Kotlin DSL. Each plug
 `build.gradle.kts` using a `plugin()` helper that derives the plugin ID (`com.pambrose.<id>`)
 and implementation class (`com.pambrose.<Name>`) from its arguments.
 
-Group/artifact: `com.pambrose.gradle-plugins:1.0.14`
+Group/artifact: `com.pambrose.gradle-plugins:1.0.15`
 
 ## Plugins
 
-- `com.pambrose.testing`: Configures JUnit Platform with verbose test logging (passed/skipped/failed events, full exception format). Adds `ch.qos.logback:logback-classic` to `testRuntimeOnly` by default when the consuming project applies the `java` plugin. Adds `io.kotest:kotest-runner-junit5` and `org.jetbrains.kotlin:kotlin-test` (unversioned) to `testImplementation` by default when the consuming project applies the `org.jetbrains.kotlin.jvm` plugin. Configurable via the `pambroseTesting` extension (`addLogbackClassic`, `logbackVersion`, `addKotest`, `kotestVersion`, `addKotlinTest`).
+- `com.pambrose.testing`: Configures JUnit Platform with verbose test logging (passed/skipped/failed/standard_error events, full exception format). Adds `ch.qos.logback:logback-classic` to `testRuntimeOnly` by default when the consuming project applies the `java` plugin. Adds `io.kotest:kotest-runner-junit5` and `org.jetbrains.kotlin:kotlin-test` (unversioned) to `testImplementation` by default when the consuming project applies the `org.jetbrains.kotlin.jvm` plugin. Configurable via the `pambroseTesting` extension (`addLogbackClassic`, `logbackVersion`, `addKotest`, `kotestVersion`, `addKotlinTest`).
 - `com.pambrose.publishing`: Applies `maven-publish` and `java`, generates a sources JAR, creates a `maven` publication.
 - `com.pambrose.stable-versions`: Applies ben-manes `versions` plugin, rejects RC/beta/alpha/milestone versions from dependency updates.
 - `com.pambrose.envvar`: Loads environment variables from `.env` (configurable) into `JavaExec` and `Test` tasks. Parsed values accessible via `envvar.vars`.
@@ -25,7 +25,7 @@ Add Maven Central to `pluginManagement` repositories in `settings.gradle.kts`, t
 
 ```kotlin
 plugins {
-  id("com.pambrose.testing") version "1.0.14"
+  id("com.pambrose.testing") version "1.0.15"
 }
 ```
 
@@ -33,11 +33,11 @@ Also available via Maven Local or version catalog (`libs.versions.toml`).
 
 ## Tech Stack
 
-- Gradle 9.2.0, Kotlin DSL
-- Kotlin Gradle Plugin 2.3.10
+- Gradle 9.5.1, Kotlin DSL
+- Kotlin Gradle Plugin 2.4.0
 - Ben-Manes Versions Plugin 0.54.0
-- Kotlinter 5.4.2
-- Kotest 6.1.4 (tests)
+- Kotlinter 5.5.0
+- Kotest 6.1.11 (tests)
 - JVM toolchain 17
 
 ## Build
