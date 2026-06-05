@@ -2,7 +2,7 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/pambrose/pambrose-gradle-plugins)
 [![Maven Central](https://img.shields.io/maven-central/v/com.pambrose/pambrose-gradle-plugins)](https://central.sonatype.com/artifact/com.pambrose.pambrose-gradle-plugins)
-[![Kotlin version](https://img.shields.io/badge/kotlin-2.3.20-red?logo=kotlin)](http://kotlinlang.org)
+[![Kotlin version](https://img.shields.io/badge/kotlin-2.4.0-red?logo=kotlin)](http://kotlinlang.org)
 [![ktlint](https://img.shields.io/badge/ktlint%20code--style-%E2%9D%A4-FF4081)](https://pinterest.github.io/ktlint/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
@@ -12,8 +12,8 @@ Shared Gradle convention plugins for Kotlin JVM projects.
 
 ### `com.pambrose.testing`
 
-Configures all test tasks to use JUnit Platform with verbose logging (passed/skipped/failed events, full exception
-format, standard streams suppressed).
+Configures all test tasks to use JUnit Platform with verbose logging (passed/skipped/failed/standard_error events,
+full exception format, per-test standard streams suppressed).
 
 When the consuming project applies the `java` plugin, a `ch.qos.logback:logback-classic` dependency is added to
 `testRuntimeOnly` by default so libraries using SLF4J (directly or via `kotlin-logging`) get a logging backend
@@ -88,11 +88,11 @@ In your **build.gradle.kts**, apply the desired plugins:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.14"
-  id("com.pambrose.stable-versions") version "1.0.14"
-  id("com.pambrose.kotlinter") version "1.0.14"
-  id("com.pambrose.publishing") version "1.0.14"
-  id("com.pambrose.testing") version "1.0.14"
+  id("com.pambrose.envvar") version "1.0.15"
+  id("com.pambrose.stable-versions") version "1.0.15"
+  id("com.pambrose.kotlinter") version "1.0.15"
+  id("com.pambrose.publishing") version "1.0.15"
+  id("com.pambrose.testing") version "1.0.15"
 }
 ```
 
@@ -121,11 +121,11 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.14"
-  id("com.pambrose.stable-versions") version "1.0.14"
-  id("com.pambrose.kotlinter") version "1.0.14"
-  id("com.pambrose.publishing") version "1.0.14"
-  id("com.pambrose.testing") version "1.0.14"
+  id("com.pambrose.envvar") version "1.0.15"
+  id("com.pambrose.stable-versions") version "1.0.15"
+  id("com.pambrose.kotlinter") version "1.0.15"
+  id("com.pambrose.publishing") version "1.0.15"
+  id("com.pambrose.testing") version "1.0.15"
 }
 ```
 
@@ -138,7 +138,7 @@ In your **gradle/libs.versions.toml**, define the version and plugin aliases:
 
 ```toml
 [versions]
-pambrose-plugins = "1.0.14"
+pambrose-plugins = "1.0.15"
 
 [plugins]
 pambrose-envvar = { id = "com.pambrose.envvar", version.ref = "pambrose-plugins" }
@@ -174,11 +174,11 @@ Use `apply false` to resolve the plugin version without applying the plugin to t
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.14" apply false
-  id("com.pambrose.stable-versions") version "1.0.14" apply false
-  id("com.pambrose.kotlinter") version "1.0.14" apply false
-  id("com.pambrose.publishing") version "1.0.14" apply false
-  id("com.pambrose.testing") version "1.0.14" apply false
+  id("com.pambrose.envvar") version "1.0.15" apply false
+  id("com.pambrose.stable-versions") version "1.0.15" apply false
+  id("com.pambrose.kotlinter") version "1.0.15" apply false
+  id("com.pambrose.publishing") version "1.0.15" apply false
+  id("com.pambrose.testing") version "1.0.15" apply false
 }
 ```
 
