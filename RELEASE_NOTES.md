@@ -5,6 +5,30 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.1.0 — 2026-07-02
+
+Drops the stable-versions plugin and refreshes the toolchain.
+
+**Highlights**
+
+- Removed the `com.pambrose.stable-versions` plugin (`StableVersionsPlugin`)
+  and its test. The plugin applied the ben-manes `versions` plugin and
+  filtered RC/beta/alpha/milestone candidates out of `dependencyUpdates`;
+  it is no longer published. The now-unused `gradle-versions-plugin`
+  dependency was dropped from the build as well.
+- Gradle wrapper bumped to 9.6.1, Kotest to 6.2.1, and the vanniktech
+  `maven-publish` plugin to 0.37.0.
+
+**Upgrade notes**
+
+- This is a **breaking change**. If your build applies
+  `com.pambrose.stable-versions`, remove it. To keep filtering non-stable
+  dependency updates, apply `com.github.ben-manes.versions` directly and
+  reject non-stable candidates in your own `dependencyUpdates`
+  configuration.
+
+---
+
 ## v1.0.15 — 2026-06-05
 
 Toolchain refresh, build-config consolidation, and louder test failures.

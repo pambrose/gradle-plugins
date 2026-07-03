@@ -16,10 +16,10 @@ Gradle projects to share common build configuration. Distributed via Maven Centr
 
 ## Tech Stack
 
-- Gradle 9.5.1 with Kotlin DSL
+- Gradle 9.6.1 with Kotlin DSL
 - Kotlin Gradle Plugin 2.4.0
 - Ben-Manes Versions Plugin 0.54.0
-- Group/artifact: `com.pambrose.gradle:gradle-plugins:1.0.15`
+- Group/artifact: `com.pambrose.gradle:gradle-plugins:1.1.0`
 
 ## Architecture
 
@@ -34,7 +34,6 @@ the arguments.
 |--------------------------------|------------------------|----------------------------------------------------------------------------|
 | `com.pambrose.testing`         | `TestingPlugin`        | Configures JUnit Platform with verbose test logging; adds logback-classic to `testRuntimeOnly`, and kotest-runner-junit5 + kotlin-test to `testImplementation` (Kotlin JVM projects) by default |
 | `com.pambrose.publishing`      | `PublishingPlugin`     | Sets up `maven-publish` with sources JAR and a Maven publication           |
-| `com.pambrose.stable-versions` | `StableVersionsPlugin` | Filters RC/beta/alpha/milestone versions from `dependencyUpdates` results  |
 | `com.pambrose.envvar`          | `EnvVarPlugin`         | Loads env vars from `.env` into `JavaExec` and `Test` tasks |
 | `com.pambrose.kotlinter`       | `KotlinterPlugin`      | Applies kotlinter with checkstyle and plain reporters                      |
 
