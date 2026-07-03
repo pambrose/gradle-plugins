@@ -1,16 +1,15 @@
 [versions]
 dokka = "2.2.0"
-gradle-wrapper = "9.5.1"
+gradle-wrapper = "9.6.1"
 jvm = "17"
-kotest = "6.1.11"
+kotest = "6.2.1"
 kotlin = "2.4.0"
 kotlinter = "5.5.0"
 logback = "1.5.32"
-maven-publish = "0.36.0"
+maven-publish = "0.37.0"
 versions = "0.54.0"
 
 [libraries]
-gradle-versions-plugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "versions" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

@@ -40,11 +40,6 @@ pambroseTesting {
 Applies `maven-publish` and `java`, generates a sources JAR, and creates a `maven` publication from the `java`
 component.
 
-### `com.pambrose.stable-versions`
-
-Applies the ben-manes `versions` plugin and configures the `dependencyUpdates` task to reject RC, beta, alpha, and
-milestone versions. Consumers do not need to apply `com.github.ben-manes.versions` separately.
-
 ### `com.pambrose.envvar`
 
 Loads environment variables from `.env` into all `JavaExec` and `Test` tasks. Lines starting with `#`
@@ -88,11 +83,10 @@ In your **build.gradle.kts**, apply the desired plugins:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.15"
-  id("com.pambrose.stable-versions") version "1.0.15"
-  id("com.pambrose.kotlinter") version "1.0.15"
-  id("com.pambrose.publishing") version "1.0.15"
-  id("com.pambrose.testing") version "1.0.15"
+  id("com.pambrose.envvar") version "1.1.0"
+  id("com.pambrose.kotlinter") version "1.1.0"
+  id("com.pambrose.publishing") version "1.1.0"
+  id("com.pambrose.testing") version "1.1.0"
 }
 ```
 
@@ -121,11 +115,10 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.15"
-  id("com.pambrose.stable-versions") version "1.0.15"
-  id("com.pambrose.kotlinter") version "1.0.15"
-  id("com.pambrose.publishing") version "1.0.15"
-  id("com.pambrose.testing") version "1.0.15"
+  id("com.pambrose.envvar") version "1.1.0"
+  id("com.pambrose.kotlinter") version "1.1.0"
+  id("com.pambrose.publishing") version "1.1.0"
+  id("com.pambrose.testing") version "1.1.0"
 }
 ```
 
@@ -138,11 +131,10 @@ In your **gradle/libs.versions.toml**, define the version and plugin aliases:
 
 ```toml
 [versions]
-pambrose-plugins = "1.0.15"
+pambrose-plugins = "1.1.0"
 
 [plugins]
 pambrose-envvar = { id = "com.pambrose.envvar", version.ref = "pambrose-plugins" }
-pambrose-stable-versions = { id = "com.pambrose.stable-versions", version.ref = "pambrose-plugins" }
 pambrose-kotlinter = { id = "com.pambrose.kotlinter", version.ref = "pambrose-plugins" }
 pambrose-publishing = { id = "com.pambrose.publishing", version.ref = "pambrose-plugins" }
 pambrose-testing = { id = "com.pambrose.testing", version.ref = "pambrose-plugins" }
@@ -153,7 +145,6 @@ In your **build.gradle.kts**, apply the plugins using `alias()`:
 ```kotlin
 plugins {
   alias(libs.plugins.pambrose.envvar)
-  alias(libs.plugins.pambrose.stable.versions)
   alias(libs.plugins.pambrose.kotlinter)
   alias(libs.plugins.pambrose.publishing)
   alias(libs.plugins.pambrose.testing)
@@ -174,11 +165,10 @@ Use `apply false` to resolve the plugin version without applying the plugin to t
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.0.15" apply false
-  id("com.pambrose.stable-versions") version "1.0.15" apply false
-  id("com.pambrose.kotlinter") version "1.0.15" apply false
-  id("com.pambrose.publishing") version "1.0.15" apply false
-  id("com.pambrose.testing") version "1.0.15" apply false
+  id("com.pambrose.envvar") version "1.1.0" apply false
+  id("com.pambrose.kotlinter") version "1.1.0" apply false
+  id("com.pambrose.publishing") version "1.1.0" apply false
+  id("com.pambrose.testing") version "1.1.0" apply false
 }
 ```
 

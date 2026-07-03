@@ -25,7 +25,6 @@ repositories {
 
 dependencies {
   implementation(libs.kotlin.gradle.plugin)
-  implementation(libs.gradle.versions.plugin)
   implementation(libs.kotlinter.gradle)
 
   testImplementation(libs.kotest.runner.junit5)
@@ -93,7 +92,6 @@ fun NamedDomainObjectContainer<PluginDeclaration>.plugin(
 gradlePlugin {
   plugins {
     plugin("EnvVarPlugin", "envvar")
-    plugin("StableVersionsPlugin", "stable-versions")
     plugin("PublishingPlugin", "publishing")
     plugin("KotlinterPlugin", "kotlinter")
     plugin("TestingPlugin", "testing")
