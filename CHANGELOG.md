@@ -4,6 +4,14 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-07-02
+
+### Removed
+- `StableVersionsPlugin` and the `com.pambrose.stable-versions` plugin, along with its test and the now-unused `gradle-versions-plugin` dependency. **Breaking change:** consumers applying `com.pambrose.stable-versions` must remove it and apply `com.github.ben-manes.versions` directly if they still need dependency-update reporting. The root project retains its own `dependencyUpdates` configuration.
+
+### Changed
+- Upgraded the Gradle wrapper to 9.6.1, Kotest to 6.2.1, and the vanniktech `maven-publish` plugin to 0.37.0.
+
 ## [1.0.15] - 2026-06-05
 
 ### Added
@@ -154,6 +162,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
+[1.1.0]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.15...1.1.0
 [1.0.15]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.14...1.0.15
 [1.0.14]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.13...1.0.14
 [1.0.13]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.12...1.0.13
