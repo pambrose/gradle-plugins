@@ -5,6 +5,40 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.1.1 — 2026-07-30
+
+A maintenance release: toolchain refresh and a clean, warning-free build on
+Gradle 9.6.
+
+**Highlights**
+
+- Kotlin bumped to 2.4.10, Kotest to 6.2.3, Kotlinter to 5.6.0, logback to
+  1.6.1, and the ben-manes versions plugin to 0.57.0.
+- Configuring the root build no longer emits Gradle 9.6 deprecation
+  warnings. The `generateBuildConfig` task moved off the deprecated
+  `by tasks.registering` property delegate to `tasks.register(name)`, and
+  the vanniktech `GradlePlugin` publication now uses
+  `sourcesJar = SourcesJar.Sources()` rather than the deprecated `Boolean`
+  overload. Both are mechanical API migrations with no behavior change.
+- The ben-manes versions plugin is applied under its current ID,
+  `io.github.ben-manes.versions`. The old `com.github.ben-manes.versions`
+  coordinate is a legacy alias.
+
+**Upgrade notes**
+
+- No API or behavior changes in any published plugin; this should be a drop-in
+  upgrade from 1.1.0.
+- `TestingPlugin`'s injected defaults moved with the toolchain: consuming
+  projects now get `logback-classic` 1.6.1 and `kotest-runner-junit5` 6.2.3
+  unless they override `pambroseTesting.logbackVersion` or
+  `pambroseTesting.kotestVersion`. If you need the previous versions, pin them
+  explicitly in that extension.
+- If you followed the v1.1.0 upgrade note and applied
+  `com.github.ben-manes.versions` directly, consider switching to
+  `io.github.ben-manes.versions`.
+
+---
+
 ## v1.1.0 — 2026-07-02
 
 Drops the stable-versions plugin and refreshes the toolchain.
