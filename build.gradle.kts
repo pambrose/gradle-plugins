@@ -1,6 +1,7 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.plugins.signing.Sign
 import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.SourcesJar
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 
@@ -37,7 +38,7 @@ kotlin {
 
 val generatedSrcDir = layout.buildDirectory.dir("generated/sources/buildconfig/kotlin/main")
 
-val generateBuildConfig by tasks.registering {
+val generateBuildConfig = tasks.register("generateBuildConfig") {
   val logbackVersion = libs.versions.logback.get()
   val kotestVersion = libs.versions.kotest.get()
   val outputDir = generatedSrcDir
@@ -110,7 +111,7 @@ mavenPublishing {
   configure(
     com.vanniktech.maven.publish.GradlePlugin(
       javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationHtml"),
-      sourcesJar = true,
+      sourcesJar = SourcesJar.Sources(),
     ),
   )
   coordinates(groupId, artifactId, version.toString())

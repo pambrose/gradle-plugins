@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2026-07-30
+
+### Changed
+- Upgraded Kotlin to 2.4.10, Kotest to 6.2.3, Kotlinter to 5.6.0, logback to 1.6.1, and the ben-manes versions plugin to 0.57.0.
+- The default `logback-classic` and `kotest-runner-junit5` versions that `TestingPlugin` injects now track the bumps above (1.6.1 and 6.2.3). Override with `pambroseTesting.logbackVersion` / `pambroseTesting.kotestVersion` to pin the previous values.
+- The ben-manes versions plugin is now applied under its current ID, `io.github.ben-manes.versions`, instead of the legacy `com.github.ben-manes.versions`. This affects the root build only; it is not part of any published plugin.
+
+### Fixed
+- Removed the Gradle 9.6 deprecation warnings emitted while configuring the root build. The `generateBuildConfig` task now uses `tasks.register(name)` instead of the deprecated `by tasks.registering` delegate, and the vanniktech `GradlePlugin` publication is configured with `sourcesJar = SourcesJar.Sources()` instead of the deprecated `Boolean` overload. No behavior change.
+
 ## [1.1.0] - 2026-07-02
 
 ### Removed
@@ -162,6 +172,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
+[1.1.1]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.15...1.1.0
 [1.0.15]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.14...1.0.15
 [1.0.14]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.13...1.0.14

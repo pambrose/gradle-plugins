@@ -17,9 +17,9 @@ Gradle projects to share common build configuration. Distributed via Maven Centr
 ## Tech Stack
 
 - Gradle 9.6.1 with Kotlin DSL
-- Kotlin Gradle Plugin 2.4.0
-- Ben-Manes Versions Plugin 0.54.0
-- Group/artifact: `com.pambrose.gradle:gradle-plugins:1.1.0`
+- Kotlin Gradle Plugin 2.4.10
+- Ben-Manes Versions Plugin 0.57.0 (plugin ID `io.github.ben-manes.versions`)
+- Group/artifact: `com.pambrose.gradle:gradle-plugins:1.1.1`
 
 ## Architecture
 

@@ -9,7 +9,7 @@ A multi-plugin Gradle convention plugin project built with Kotlin DSL. Each plug
 `build.gradle.kts` using a `plugin()` helper that derives the plugin ID (`com.pambrose.<id>`)
 and implementation class (`com.pambrose.<Name>`) from its arguments.
 
-Group/artifact: `com.pambrose.gradle-plugins:1.1.0`
+Group/artifact: `com.pambrose.gradle-plugins:1.1.1`
 
 ## Plugins
 
@@ -24,7 +24,7 @@ Add Maven Central to `pluginManagement` repositories in `settings.gradle.kts`, t
 
 ```kotlin
 plugins {
-  id("com.pambrose.testing") version "1.1.0"
+  id("com.pambrose.testing") version "1.1.1"
 }
 ```
 
@@ -33,10 +33,10 @@ Also available via Maven Local or version catalog (`libs.versions.toml`).
 ## Tech Stack
 
 - Gradle 9.6.1, Kotlin DSL
-- Kotlin Gradle Plugin 2.4.0
-- Ben-Manes Versions Plugin 0.54.0
-- Kotlinter 5.5.0
-- Kotest 6.2.1 (tests)
+- Kotlin Gradle Plugin 2.4.10
+- Ben-Manes Versions Plugin 0.57.0 (plugin ID `io.github.ben-manes.versions`)
+- Kotlinter 5.6.0
+- Kotest 6.2.3 (tests)
 - JVM toolchain 17
 
 ## Build
