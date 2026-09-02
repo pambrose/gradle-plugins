@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.3] - 2026-09-02
+
+### Fixed
+- **`TestingPlugin`'s default `logback-classic` version no longer points at a nonexistent release.** 1.1.2 shipped `1.6.4`, which was never published to Maven Central, so every consuming project that applied `com.pambrose.testing` without overriding `pambroseTesting.logbackVersion` failed at dependency resolution. The default is now `1.6.3`, the current release.
+
+### Added
+- A regression test that resolves `testRuntimeClasspath` and `testCompileClasspath` against Maven Central rather than only asserting the dependency is declared. The pre-existing tests passed with the broken 1.6.4 default; this one fails on any injected version that does not resolve.
+
+### Changed
+- Trimmed the `Build Commands` and `Tech Stack` sections from `CLAUDE.md`. Both were reconstructible from `gradle/libs.versions.toml`, `gradle.properties`, and `build.gradle.kts`, and the Tech Stack block had already drifted out of date twice.
+
 ## [1.1.2] - 2026-09-02
 
 ### Added
@@ -182,6 +193,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
+[1.1.3]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.15...1.1.0
