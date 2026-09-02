@@ -5,6 +5,38 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.1.3 — 2026-09-02
+
+A hotfix for a broken default shipped in 1.1.2. **Upgrade from 1.1.2.**
+
+**The problem**
+
+1.1.2 set `TestingPlugin`'s default `logback-classic` version to `1.6.4`, which
+was never published to Maven Central — the latest release is `1.6.3`. Any
+project applying `com.pambrose.testing` alongside the `java` plugin, without
+overriding `pambroseTesting.logbackVersion`, got
+`testRuntimeOnly("ch.qos.logback:logback-classic:1.6.4")` and failed at
+dependency resolution.
+
+The plugin's own test suite did not catch it: the existing tests assert only
+that the dependency is *declared*, never that it *resolves*, so a nonexistent
+version passed a green build.
+
+**The fix**
+
+- The default `logback-classic` version is now `1.6.3`.
+- Added a regression test that resolves `testRuntimeClasspath` and
+  `testCompileClasspath` against Maven Central. A default version that does
+  not exist now fails the build instead of shipping.
+
+**Upgrade notes**
+
+- If you are on 1.1.2 and pinned `pambroseTesting.logbackVersion` to work
+  around the failure, you can drop the override after upgrading.
+- No API changes. 1.1.3 is otherwise identical to 1.1.2.
+
+---
+
 ## v1.1.2 — 2026-09-02
 
 A maintenance release: repository line-ending hygiene plus a toolchain

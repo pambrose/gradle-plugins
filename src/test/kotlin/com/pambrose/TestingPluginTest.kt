@@ -80,6 +80,43 @@ class TestingPluginTest : StringSpec(
       result.output shouldContain "DEP=ch.qos.logback:logback-classic:"
     }
 
+    // Regression guard: the tests above assert only that the dependency is DECLARED, so a
+    // default version that does not exist on Maven Central passes them. 1.1.2 shipped
+    // logback 1.6.4, which was never published, and every consumer using the default broke.
+    // This test actually resolves the configurations, so a bad version fails the build.
+    "injected default dependency versions resolve against Maven Central" {
+      val projectDir = createTempDirectory("test").toFile()
+      projectDir.resolve("settings.gradle.kts").writeText("""rootProject.name = "test-project"""")
+      projectDir.resolve("build.gradle.kts").writeText(
+        """
+      plugins {
+        kotlin("jvm") version "2.4.0"
+        id("com.pambrose.testing")
+      }
+
+      repositories {
+        mavenCentral()
+      }
+
+      tasks.register("resolveTestDeps") {
+        doLast {
+          configurations["testRuntimeClasspath"].resolve().forEach { println("RUNTIME=${'$'}{it.name}") }
+          configurations["testCompileClasspath"].resolve().forEach { println("COMPILE=${'$'}{it.name}") }
+        }
+      }
+      """.trimIndent(),
+      )
+
+      val result = GradleRunner.create()
+        .withProjectDir(projectDir)
+        .withPluginClasspath()
+        .withArguments("resolveTestDeps")
+        .build()
+
+      result.output shouldContain "RUNTIME=logback-classic-${BuildConfig.DEFAULT_LOGBACK_VERSION}.jar"
+      result.output shouldContain "kotest-runner-junit5"
+    }
+
     "plugin honors addLogbackClassic = false" {
       val projectDir = createTempDirectory("test").toFile()
       projectDir.resolve("settings.gradle.kts").writeText("""rootProject.name = "test-project"""")

@@ -7,20 +7,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 A multi-plugin Gradle convention plugin project built with Kotlin DSL. These plugins are consumed by other
 Gradle projects to share common build configuration. Distributed via Maven Central (`com.pambrose:pambrose-gradle-plugins`).
 
-## Build Commands
-
-- **Build:** `./gradlew build`
-- **Clean:** `./gradlew clean`
-- **Publish to local Maven repo:** `./gradlew publishToMavenLocal`
-- **Check dependency updates:** `./gradlew dependencyUpdates`
-
-## Tech Stack
-
-- Gradle 9.7.1 with Kotlin DSL
-- Kotlin Gradle Plugin 2.4.10
-- Ben-Manes Versions Plugin 0.61.0 (plugin ID `io.github.ben-manes.versions`)
-- Group/artifact: `com.pambrose:pambrose-gradle-plugins:1.1.2`
-
 ## Architecture
 
 All plugins live in `src/main/kotlin/com/pambrose/`, each implementing `Plugin<Project>`. Plugins are
