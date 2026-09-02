@@ -83,10 +83,10 @@ In your **build.gradle.kts**, apply the desired plugins:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.1.1"
-  id("com.pambrose.kotlinter") version "1.1.1"
-  id("com.pambrose.publishing") version "1.1.1"
-  id("com.pambrose.testing") version "1.1.1"
+  id("com.pambrose.envvar") version "1.1.2"
+  id("com.pambrose.kotlinter") version "1.1.2"
+  id("com.pambrose.publishing") version "1.1.2"
+  id("com.pambrose.testing") version "1.1.2"
 }
 ```
 
@@ -115,10 +115,10 @@ In your **build.gradle.kts**:
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.1.1"
-  id("com.pambrose.kotlinter") version "1.1.1"
-  id("com.pambrose.publishing") version "1.1.1"
-  id("com.pambrose.testing") version "1.1.1"
+  id("com.pambrose.envvar") version "1.1.2"
+  id("com.pambrose.kotlinter") version "1.1.2"
+  id("com.pambrose.publishing") version "1.1.2"
+  id("com.pambrose.testing") version "1.1.2"
 }
 ```
 
@@ -131,7 +131,7 @@ In your **gradle/libs.versions.toml**, define the version and plugin aliases:
 
 ```toml
 [versions]
-pambrose-plugins = "1.1.1"
+pambrose-plugins = "1.1.2"
 
 [plugins]
 pambrose-envvar = { id = "com.pambrose.envvar", version.ref = "pambrose-plugins" }
@@ -165,10 +165,10 @@ Use `apply false` to resolve the plugin version without applying the plugin to t
 
 ```kotlin
 plugins {
-  id("com.pambrose.envvar") version "1.1.1" apply false
-  id("com.pambrose.kotlinter") version "1.1.1" apply false
-  id("com.pambrose.publishing") version "1.1.1" apply false
-  id("com.pambrose.testing") version "1.1.1" apply false
+  id("com.pambrose.envvar") version "1.1.2" apply false
+  id("com.pambrose.kotlinter") version "1.1.2" apply false
+  id("com.pambrose.publishing") version "1.1.2" apply false
+  id("com.pambrose.testing") version "1.1.2" apply false
 }
 ```
 

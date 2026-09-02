@@ -1,0 +1,25 @@
+# Normalize all text files to LF in the repository
+* text=auto eol=lf
+
+# Windows scripts must have CRLF in the working tree
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# Shell scripts must always have LF, even on Windows
+gradlew text eol=lf
+*.sh    text eol=lf
+
+# Binaries — never normalize
+*.jar      binary
+*.zip      binary
+*.png      binary
+*.jpg      binary
+*.gif      binary
+*.ico      binary
+*.jks      binary
+*.keystore binary
+
+# Reduce diff noise for Gradle wrapper files on GitHub
+gradlew                           linguist-generated
+gradlew.bat                       linguist-generated
+gradle/wrapper/gradle-wrapper.jar linguist-generated

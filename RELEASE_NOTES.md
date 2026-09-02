@@ -5,6 +5,41 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.1.2 — 2026-09-02
+
+A maintenance release: repository line-ending hygiene plus a toolchain
+refresh.
+
+**Highlights**
+
+- Added a `.gitattributes`. All text files are now normalized to LF in the
+  repository regardless of each contributor's `core.autocrlf` / `core.eol`
+  settings, `*.bat` and `*.cmd` are checked out with CRLF so `gradlew.bat`
+  behaves on Windows, `gradlew` and `*.sh` are pinned to LF, and binary file
+  types are marked so Git never normalizes them. The Gradle wrapper files are
+  flagged `linguist-generated` to keep them out of GitHub's language
+  statistics and reduce diff noise.
+- Gradle wrapper bumped to 9.7.1, Kotest to 6.2.4, Kotlinter to 5.7.0,
+  logback to 1.6.4, and the ben-manes versions plugin to 0.61.0. Kotlin stays
+  at 2.4.10.
+
+**Upgrade notes**
+
+- No API or behavior changes in any published plugin; this should be a
+  drop-in upgrade from 1.1.1.
+- `TestingPlugin`'s injected defaults moved with the toolchain: consuming
+  projects now get `logback-classic` 1.6.4 and `kotest-runner-junit5` 6.2.4
+  unless they override `pambroseTesting.logbackVersion` or
+  `pambroseTesting.kotestVersion`. If you need the previous versions, pin
+  them explicitly in that extension.
+- `KotlinterPlugin` now brings in kotlinter 5.7.0. A minor kotlinter bump can
+  change which formatting rules fire, so if `lintKotlin` starts failing after
+  the upgrade, run `./gradlew formatKotlin`.
+- The `.gitattributes` affects this repository only. It changes nothing for
+  consumers of the published plugins.
+
+---
+
 ## v1.1.1 — 2026-07-30
 
 A maintenance release: toolchain refresh and a clean, warning-free build on

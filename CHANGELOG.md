@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.2] - 2026-09-02
+
+### Added
+- `.gitattributes` normalizing all text files to LF in the repository, forcing CRLF in the working tree for `*.bat` / `*.cmd` so `gradlew.bat` behaves on Windows, pinning `gradlew` and `*.sh` to LF, marking binary file types so Git never normalizes them, and flagging the Gradle wrapper files as `linguist-generated` to reduce diff noise on GitHub. Repository hygiene only; not part of any published artifact.
+
+### Changed
+- Upgraded the Gradle wrapper to 9.7.1, Kotest to 6.2.4, Kotlinter to 5.7.0, logback to 1.6.4, and the ben-manes versions plugin to 0.61.0.
+- The default `logback-classic` and `kotest-runner-junit5` versions that `TestingPlugin` injects now track the bumps above (1.6.4 and 6.2.4). Override with `pambroseTesting.logbackVersion` / `pambroseTesting.kotestVersion` to pin the previous values.
+- `KotlinterPlugin` now applies kotlinter 5.7.0.
+
 ## [1.1.1] - 2026-07-30
 
 ### Changed
@@ -172,6 +182,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
+[1.1.2]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.0...1.1.1
 [1.1.0]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.15...1.1.0
 [1.0.15]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.0.14...1.0.15
