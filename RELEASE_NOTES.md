@@ -5,6 +5,26 @@ see [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
+## v1.1.4 — 2026-09-07
+
+A toolchain-only maintenance release.
+
+**Highlights**
+
+- The Kotlin Gradle Plugin used to build these plugins is now 2.4.20 (was
+  2.4.10).
+- The GradleRunner fixtures in `TestingPluginTest` apply
+  `kotlin("jvm") version "2.4.20"` instead of the stale `2.4.0`, so the
+  functional tests build against the same Kotlin version as the project.
+
+**Upgrade notes**
+
+- No API changes, and no change to the `logback-classic` or
+  `kotest-runner-junit5` versions `TestingPlugin` injects. 1.1.4 is otherwise
+  identical to 1.1.3.
+
+---
+
 ## v1.1.3 — 2026-09-02
 
 A hotfix for a broken default shipped in 1.1.2. **Upgrade from 1.1.2.**
