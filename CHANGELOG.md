@@ -4,6 +4,12 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.4] - 2026-09-07
+
+### Changed
+- Upgraded the Kotlin Gradle Plugin to 2.4.20. This is the version the plugins themselves are compiled with; it does not change any version injected into consuming projects.
+- The `TestingPluginTest` GradleRunner fixtures now apply `kotlin("jvm") version "2.4.20"` instead of the stale `2.4.0`, so the functional tests exercise the same Kotlin version the project builds with.
+
 ## [1.1.3] - 2026-09-02
 
 ### Fixed
@@ -193,6 +199,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Initial Gradle plugin project structure with multiple plugins and configuration files.
 - Project renamed from `common-gradle` to `gradle-plugins`.
 
+[1.1.4]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.3...1.1.4
 [1.1.3]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.2...1.1.3
 [1.1.2]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.1...1.1.2
 [1.1.1]: https://github.com/pambrose/pambrose-gradle-plugins/compare/1.1.0...1.1.1

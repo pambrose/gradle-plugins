@@ -38,3 +38,19 @@ that exposes these as Kotlin constants. To add another such version:
 1. Add the entry to `[versions]` in `libs.versions.toml`.
 2. Add a `const val` to the `generateBuildConfig` task's generated file in `build.gradle.kts`.
 3. Reference it from the plugin as `BuildConfig.<NAME>`.
+
+## Releasing
+
+The version lives in `gradle.properties` (`version=`). Everything else that names it must be
+bumped by hand in the same commit — nothing derives it:
+
+1. `gradle.properties` -- `version=<new>`
+2. `README.md` -- plugin `version "<new>"` snippets, the `pambrose-plugins` catalog entry, and the
+   Kotlin badge if the Kotlin version changed
+3. `llms.txt` -- the `Group/artifact:` line, the usage snippet, and the `Tech Stack` versions
+4. `CHANGELOG.md` -- a new `## [<new>] - YYYY-MM-DD` section plus a `[<new>]:` compare link at the
+   bottom
+5. `RELEASE_NOTES.md` -- a new `## v<new> — YYYY-MM-DD` narrative section at the top
+
+`CLAUDE.md` intentionally carries no version numbers; the `Tech Stack` section that once did was
+removed in 1.1.3 after drifting out of date twice.
